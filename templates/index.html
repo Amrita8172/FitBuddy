@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy — Build your plan{% endblock %}
+{% block content %}
+<section class="hero">
+<div class="hero-copy"><span class="eyebrow">AI FITNESS PLANNER</span><h1>Your training plan,<br><span>built around you.</span></h1>
+<p>Tell FitBuddy where you are today and where you want to go. Get a practical 7-day workout plan, recovery guidance, and an adaptive feedback loop.</p>
+<div class="hero-points"><span>✓ 7-day schedule</span><span>✓ Goal-aware workouts</span><span>✓ AI-assisted revisions</span></div></div>
+<div class="form-card"><div class="card-heading"><span class="step">01</span><div><h2>Build your plan</h2><p>It takes less than a minute.</p></div></div>
+<form action="/generate-workout" method="post" class="plan-form" id="planForm">
+<div class="field-grid"><label><span>Name</span><input name="username" required minlength="2" placeholder="Your name"></label><label><span>User ID</span><input name="user_id" required minlength="2" placeholder="e.g. FB1001"></label>
+<label><span>Age</span><input type="number" name="age" required min="13" max="100" placeholder="22"></label><label><span>Weight (kg)</span><input type="number" name="weight" required min="20" max="400" step="0.1" placeholder="65"></label></div>
+<label><span>Primary goal</span><select name="goal" required><option value="muscle gain">Muscle gain</option><option value="weight loss">Weight loss</option><option value="general wellness">General wellness</option><option value="flexibility">Flexibility</option><option value="endurance">Endurance</option></select></label>
+<label><span>Workout intensity</span><div class="choice-row"><label class="choice"><input type="radio" name="intensity" value="low"><span>Low</span></label><label class="choice"><input type="radio" name="intensity" value="medium" checked><span>Medium</span></label><label class="choice"><input type="radio" name="intensity" value="high"><span>High</span></label></div></label>
+<button class="primary-btn" type="submit"><span>Generate my plan</span><span>→</span></button><p class="microcopy">By continuing, you acknowledge that FitBuddy provides general wellness guidance.</p>
+</form></div></section>
+<section class="feature-strip"><article><span>01</span><h3>Personalized</h3><p>Plans adapt to your goal, age, weight and chosen intensity.</p></article><article><span>02</span><h3>Actionable</h3><p>Every day has a focus, warm-up, main work and cooldown.</p></article><article><span>03</span><h3>Adaptive</h3><p>Give feedback and regenerate a plan around what you need.</p></article></section>
+{% endblock %}

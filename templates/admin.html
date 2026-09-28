@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy — Admin{% endblock %}
+{% block content %}
+<section class="admin-shell"><div class="result-top"><div><span class="eyebrow">ADMIN CONSOLE</span><h1>User plans</h1><p>Review generated plans and feedback history.</p></div><a class="secondary-btn" href="/">Home</a></div>
+<div class="admin-grid"><div class="stat"><span>Users</span><strong>{{ users|length }}</strong></div><div class="stat"><span>Updated plans</span><strong>{{ users|selectattr('updated_plan')|list|length }}</strong></div><div class="stat"><span>Stored records</span><strong>{{ users|length }}</strong></div></div>
+<div class="table-card">{% if users %}<div class="table-wrap"><table><thead><tr><th>User</th><th>Profile</th><th>Goal</th><th>Original</th><th>Updated</th><th>Feedback</th><th>Created</th></tr></thead><tbody>
+{% for user in users %}<tr><td><strong>{{ user.username }}</strong><small>{{ user.user_id }}</small></td><td>{{ user.age }} yrs · {{ user.weight }} kg</td><td>{{ user.goal|title }}<small>{{ user.intensity|title }}</small></td><td><span class="status">Available</span></td><td>{% if user.updated_plan %}<span class="status status-green">Updated</span>{% else %}<span class="status">—</span>{% endif %}</td><td>{{ user.last_feedback or "—" }}</td><td>{{ user.created_at.strftime("%d %b %Y") if user.created_at else "—" }}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<div class="empty-state"><h2>No users yet</h2><p>Generate your first FitBuddy plan from the home page.</p></div>{% endif %}</div></section>
+{% endblock %}
